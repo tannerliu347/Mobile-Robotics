@@ -9,8 +9,8 @@ batch_size = 32
 #dataset = 'dataset_train.csv'
 
 # test directory
-directory = './nclt_03_31/test/'
-dataset = 'dataset_test.csv'
+directory = './2012-03-31/lb3/'
+dataset = 'dataset_train.csv'
 
 class datasource(object):
     def __init__(self, images, poses):
@@ -69,7 +69,7 @@ def get_data():
     poses = []
     images = []
     line_num = 0
-    all_imgs = sorted(os.listdir(directory))[:-1]
+    all_imgs = sorted(os.listdir(directory + 'Cam0'))[:-1]
     with open(directory+dataset) as f:
         #next(f)  # skip the 3 header lines
         #next(f)
@@ -83,14 +83,17 @@ def get_data():
             p4 = float(p4)
             p5 = float(p5)
             try:
-                filename = directory+'/'+all_imgs[line_num] #fname+".tiff"
+                filename = directory + 'Cam0/' +all_imgs[line_num] #fname+".tiff"
             except:
+                print "fail"
                 pdb.set_trace()
             if (os.path.isfile(filename)==False):
-                pdb.set_trace()
+                # pdb.set_trace()
+                # print "fail"
                 continue
             else:
                 poses.append((p0,p1,p2,p3,p4,p5))
+                print filename
                 images.append(filename )
             line_num += 1
     print("Num of images is "+str(len(images)))

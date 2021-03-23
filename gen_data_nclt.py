@@ -4,8 +4,8 @@ import cv2, os, sys
 import numpy as np
 import random, imutils
 batch_size = 32
-directory = './nclt_new/'
-dataset = 'dataset_train.csv'
+directory = './2012-03-31/'
+dataset = 'dataset_test.csv'
 
 class datasource(object):
     def __init__(self, images, poses):
